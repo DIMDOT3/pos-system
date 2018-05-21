@@ -1,12 +1,20 @@
 import React from 'react';
 import MenuItem from './MenuItem';
+import './MenuList.css';
 
-const MenuList = ({items}) => {
-	const menuItem = items.map(item => <MenuItem item={item} />);
+const MenuList = ({items, handleAddItem}) => {
+	const menuItem = items.map((item, i) => (
+		<MenuItem 
+			item={item} 
+			key={i}
+			handleAddItem={handleAddItem.bind(this, item)} 
+		/>
+	));
 	return (
-		<ul>
+		<div className='menu-list'>
+			<h2>Menu Items</h2>
 			{menuItem}
-		</ul>
+		</div>
 	);
 };
 
