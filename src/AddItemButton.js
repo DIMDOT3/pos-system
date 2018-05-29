@@ -5,9 +5,9 @@ const AddItemButton = ({ item, handleAddItem }) => {
 	return (
 		<button 
 			onClick={handleAddItem.bind(this, itemObj)}
-			className='btn btn-success'
+			className='btn btn-primary menu-button'
 			>
-				Entree
+				Entree - ${item.entree}
 		</button>
 	)
 }

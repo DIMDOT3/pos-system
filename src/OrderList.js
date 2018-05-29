@@ -13,12 +13,19 @@ class OrderList extends Component {
 	};
 
 	componentWillReceiveProps(props) {
-    this.setState({orderTotal: props.orders});
-}
+    	this.setState({orderTotal: props.orders});
+	};
 
 	handleOnChange = (val) => {
 		let {tenderAmount} = this.state;
-		let currentTenderAmount = tenderAmount + val;
+		var currentTenderAmount;
+		if(val === 'Back'){
+			currentTenderAmount = tenderAmount.slice(0, tenderAmount.length - 1);
+		} else if(val === 'Clear'){
+			currentTenderAmount = '';
+		} else {
+			currentTenderAmount = tenderAmount + val;
+		};
 		this.setState({
 			tenderAmount: currentTenderAmount
 		});

@@ -1,13 +1,14 @@
 import React from 'react';
+import './AddComboButton.css';
 
 const AddComboButton = ({ item, handleAddItem }) => {
 	let itemObj = omit(item, 'entree');
 	return (
 		<button 
 			onClick={handleAddItem.bind(this, itemObj)}
-			className='btn btn-success'
+			className='btn btn-secondary menu-button'
 			>
-				Combo
+				Combo - ${item.combo}
 		</button>
 	)
 }

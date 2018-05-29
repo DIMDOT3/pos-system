@@ -1,0 +1,7 @@
+.menu-item-container {
+	padding: 10px;
+}
+
+.menu-item-container:nth-of-type(odd) {
+	background-color: #f4f4f4;
+}
