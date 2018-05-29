@@ -39,7 +39,9 @@ class App extends Component {
           imageUrl: ''
         },
       ],
-      orders: []
+      orders: [],
+      tenderAmount: '',
+      id: 0
     };
   }
 
@@ -51,15 +53,31 @@ class App extends Component {
     });
   };
 
+  handleOnChange = (val) => {
+    let {tenderAmount} = this.state;
+    var currentTenderAmount;
+    if(val === 'Back'){
+      currentTenderAmount = tenderAmount.slice(0, tenderAmount.length - 1);
+    } else if(val === 'Clear'){
+      currentTenderAmount = '';
+    } else {
+      currentTenderAmount = tenderAmount + val;
+    };
+    this.setState({
+      tenderAmount: currentTenderAmount
+    });
+  };
+
   handleAddOrder = () => {
     // add order data to db
-    this.state.orders.forEach(order => console.log(order.name));
-    this.setState({orders: []});
-    console.log(this.state.orders);
+    this.setState({
+      orders: [],
+      tenderAmount: ''
+    });
   };
 
   render() {
-    const { items, orders, handleAddOrder } = this.state;
+    const { items, orders, handleAddOrder, handleOnChange, tenderAmount } = this.state;
     return (
       <div className="App">
         <div className='menu-order-container'>
@@ -67,6 +85,8 @@ class App extends Component {
           <OrderList 
             orders={orders} 
             handleAddOrder={this.handleAddOrder} 
+            handleOnChange={this.handleOnChange}
+            tenderAmount={tenderAmount}
           />
         </div>
       </div>

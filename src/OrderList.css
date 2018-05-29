@@ -9,6 +9,14 @@
 	overflow: scroll;
 }
 
+.order-item-values {
+	width: 25%;
+}
+
+.totals {
+	width: 100%;
+}
+
 .keys-and-total-container {
 	display: flex;
 }
@@ -20,3 +28,4 @@
 .totals-container {
 	width: 55%;
 }
+

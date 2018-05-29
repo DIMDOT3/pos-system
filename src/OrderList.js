@@ -6,30 +6,22 @@ import OrderItem from './OrderItem';
 class OrderList extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			orderTotal: [],
-			tenderAmount: ''
-		};
 	};
 
-	componentWillReceiveProps(props) {
-    	this.setState({orderTotal: props.orders});
-	};
-
-	handleOnChange = (val) => {
-		let {tenderAmount} = this.state;
-		var currentTenderAmount;
-		if(val === 'Back'){
-			currentTenderAmount = tenderAmount.slice(0, tenderAmount.length - 1);
-		} else if(val === 'Clear'){
-			currentTenderAmount = '';
-		} else {
-			currentTenderAmount = tenderAmount + val;
-		};
-		this.setState({
-			tenderAmount: currentTenderAmount
-		});
-	};
+	// handleOnChange = (val) => {
+	// 	let {tenderAmount} = this.state;
+	// 	var currentTenderAmount;
+	// 	if(val === 'Back'){
+	// 		currentTenderAmount = tenderAmount.slice(0, tenderAmount.length - 1);
+	// 	} else if(val === 'Clear'){
+	// 		currentTenderAmount = '';
+	// 	} else {
+	// 		currentTenderAmount = tenderAmount + val;
+	// 	};
+	// 	this.setState({
+	// 		tenderAmount: currentTenderAmount
+	// 	});
+	// };
 
 	handleRemoveItem = (item) => {
 		console.log(item);
@@ -42,16 +34,16 @@ class OrderList extends Component {
 	};
 
 	render(){
-		const { orders, handleAddItem, handleAddOrder } = this.props;
-		const { orderTotal, tenderAmount } = this.state;
+		const { orders, tenderAmount, handleOnChange, handleAddItem, handleAddOrder } = this.props;
+		// const { orderTotal, tenderAmount } = this.state;
 		const keyPadValues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Back', '0', 'Clear'];
 		let orderItems = orders.map(order => (
 			<OrderItem order={order} handleRemoveItem={this.handleRemoveItem}/>
 		));
 		let keys = keyPadValues.map(keyValue => (
-			<KeyPadValues keyValue={keyValue} handleOnChange={this.handleOnChange.bind(this, keyValue)} />
+			<KeyPadValues keyValue={keyValue} handleOnChange={handleOnChange} />
 		));
-		let totalOrderCost = orderTotal.reduce((acc, val) => {
+		let totalOrderCost = orders.reduce((acc, val) => {
 			return acc + (val.entree || val.combo);
 		}, 0);
 		let tenderTotal = (tenderAmount === '') ? 0 : Number(tenderAmount);
@@ -64,17 +56,17 @@ class OrderList extends Component {
 				</div>
 				<div className='keys-and-total-container'>
 					<div className='totals-container'>
-						<div className='row'>
-							<div className='col-sm-4'>Order Total</div>
-							<div className='col-sm-8'>${totalOrderCost}</div>
+						<div className='row totals'>
+							<div className='col-sm-8'>Order Total</div>
+							<div className='col-sm-4'>${totalOrderCost}</div>
 						</div>
-						<div className='row'>
-							<div className='col-sm-4'>Tender</div>
-							<div className='col-sm-8'>${tenderTotal}</div>
+						<div className='row totals'>
+							<div className='col-sm-8'>Tender</div>
+							<div className='col-sm-4'>${tenderTotal}</div>
 						</div>
-						<div className='row'>
-							<div className='col-sm-4'>Change</div>
-							<div className='col-sm-8'>${change}</div>
+						<div className='row totals'>
+							<div className='col-sm-8'>Change</div>
+							<div className='col-sm-4'>${change}</div>
 						</div>
 						<button className='btn btn-primary' onClick={handleAddOrder}>Add Order</button>
 					</div>
