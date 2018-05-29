@@ -10,26 +10,41 @@ class App extends Component {
       items: [
         {
           name: 'bread',
-          price: 8,
+          entree: 8,
+          combo: 10,
+          imageUrl: ''
+        },
+        {
+          name: 'cheese',
+          entree: 8,
           combo: 10,
           imageUrl: ''
         },
         {
           name: 'milk',
-          price: 6,
-          combo: 8
+          entree: 5,
+          combo: 7,
+          imageUrl: ''
         },
         {
-          name: 'cheese',
-          price: 5,
-          combo: 7
-        }
+          name: 'pie',
+          entree: 10,
+          combo: 12,
+          imageUrl: ''
+        },
+        {
+          name: 'cheeseburger',
+          entree: 8,
+          combo: 10,
+          imageUrl: ''
+        },
       ],
       orders: []
     };
   }
 
   handleAddItem = (item) => {
+    console.log(item);
     let currentOrdersState = this.state.orders;
     this.setState({
       orders: [...currentOrdersState, item]
@@ -38,20 +53,21 @@ class App extends Component {
 
   handleAddOrder = () => {
     // add order data to db
-    console.log(this.state.orders);
     this.state.orders.forEach(order => console.log(order.name));
     this.setState({orders: []});
+    console.log(this.state.orders);
   };
-
-  handleRemoveItem = () => {};
 
   render() {
     const { items, orders, handleAddOrder } = this.state;
     return (
       <div className="App">
         <div className='menu-order-container'>
-          <MenuList items={items} handleAddItem={this.handleAddItem}/>
-          <OrderList orders={orders} handleAddOrder={this.handleAddOrder} />
+          <MenuList items={items} handleAddItem={this.handleAddItem} />
+          <OrderList 
+            orders={orders} 
+            handleAddOrder={this.handleAddOrder} 
+          />
         </div>
       </div>
     );

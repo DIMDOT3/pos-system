@@ -7,7 +7,7 @@ const MenuList = ({items, handleAddItem}) => {
 		<MenuItem 
 			item={item} 
 			key={i}
-			handleAddItem={handleAddItem.bind(this, item)} 
+			handleAddItem={handleAddItem}
 		/>
 	));
 	return (

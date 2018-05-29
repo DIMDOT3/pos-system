@@ -1,0 +1,6 @@
+.square {
+  height: 0;
+  padding-bottom: 33.33%;
+  width: 33.33%;
+  border: 1px solid black;
+}

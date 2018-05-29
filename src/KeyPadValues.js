@@ -1,8 +1,12 @@
 import React from 'react';
+import './KeyPadValues.css';
 
-const KeyPadValues = ({keyValue}) => (
-	<button className='btn btn-primary'>
-		{keyValue}
+const KeyPadValues = ({keyValue, handleOnChange}) => (
+	<button 
+		className='btn btn-primary square'
+		onClick={handleOnChange.bind(this, )}
+	>
+		<p>{keyValue}</p>
 	</button>
 );
 
